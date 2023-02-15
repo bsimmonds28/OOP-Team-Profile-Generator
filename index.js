@@ -152,7 +152,7 @@ const createTeam = () => {
     console.log(teamArray);
     console.log(teamArray[0].getRole());
     //Function to create HTML file and add code
-    fs.writeFile('Team.html', htmlGenerator(teamArray), (err) =>
+    fs.writeFile('./assets/Team.html', htmlGenerator(teamArray), (err) =>
         err ? console.error(err) : console.log('Success!')
     );
 };
