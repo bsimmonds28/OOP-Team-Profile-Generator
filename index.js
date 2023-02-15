@@ -150,6 +150,7 @@ const internQuestions = () => {
 //Function to create file with team information
 const createTeam = () => {
     console.log(teamArray);
+    console.log(teamArray[0].getRole());
     //Function to create HTML file and add code
     fs.writeFile('Team.html', htmlGenerator(teamArray), (err) =>
         err ? console.error(err) : console.log('Success!')
@@ -157,7 +158,7 @@ const createTeam = () => {
 };
 
 //String template literals for generating a string version of the HTML document before it is written to the file system
-const htmlGenerator = (array) => {
+const htmlGenerator = (teamArray) => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -184,7 +185,7 @@ const htmlGenerator = (array) => {
                         <h5 class="card-title">${teamArray[0].name}</h5>
                         <p class="card-text">ID: ${teamArray[0].id}</p>
                         <p class="card-text"><a href = "mailto: ${teamArray[0].email}">${teamArray[0].email}</a></p>
-                        <p class="card-text">${teamArray[0].officeNumber}</p>
+                        <p class="card-text">Office: ${teamArray[0].officeNumber}</p>
                     </div>
                 </div>
                 ${generateCards(teamArray)}
@@ -198,16 +199,35 @@ const htmlGenerator = (array) => {
 const generateCards = (teamArray) => {
     const cards = [];
     for (let i = 1; i < teamArray.length; i++) {
-        cards[i] = `
-            <div class="card border-dark mb-3 box-shadow" style="max-width: 18rem;">
-                <div class="card-header">${teamArray[i]}</div>
-                <div class="card-body text-dark">
-                    <h5 class="card-title">${teamArray[i].name}</h5>
-                    <p class="card-text">ID: ${teamArray[i].id}</p>
-                    <p class="card-text"><a href = "mailto: ${teamArray[i].email}">${teamArray[i].email}</a></p>
-                    <p class="card-text">${teamArray[i].officeNumber}</p>
-                </div>
-            </div>`
+        console.log(teamArray[i].getRole());
+        switch (teamArray[i].getRole()) {
+            case 'Engineer':
+                cards[i] = `
+                <div class="card border-dark mb-3 box-shadow" style="max-width: 18rem;">
+                    <div class="card-header">Engineer</div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">${teamArray[i].name}</h5>
+                        <p class="card-text">ID: ${teamArray[i].id}</p>
+                        <p class="card-text"><a href = "mailto: ${teamArray[i].email}">${teamArray[i].email}</a></p>
+                        <p class="card-text"><a href = "https://github.com/${teamArray[i].getGithub()}" target="_blank">${teamArray[i].getGithub()}</a></p>
+                    </div>
+                </div>`
+                break;
+            case 'Intern':
+                cards[i] = `
+                <div class="card border-dark mb-3 box-shadow" style="max-width: 18rem;">
+                    <div class="card-header">Intern</div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">${teamArray[i].name}</h5>
+                        <p class="card-text">ID: ${teamArray[i].id}</p>
+                        <p class="card-text"><a href = "mailto: ${teamArray[i].email}">${teamArray[i].email}</a></p>
+                        <p class="card-text">${teamArray[i].getSchool()}</p>
+                    </div>
+                </div>`
+                break;
+            default:
+                break;
+        }
     }
     return cards;
-}
+};
