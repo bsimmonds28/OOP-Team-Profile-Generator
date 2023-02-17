@@ -149,10 +149,8 @@ const internQuestions = () => {
 
 //Function to create file with team information
 const createTeam = () => {
-    console.log(teamArray);
-    console.log(teamArray[0].getRole());
     //Function to create HTML file and add code
-    fs.writeFile('./assets/Team.html', htmlGenerator(teamArray), (err) =>
+    fs.writeFile('./dist/Team.html', htmlGenerator(teamArray), (err) =>
         err ? console.error(err) : console.log('Success!')
     );
 };
@@ -167,7 +165,7 @@ const htmlGenerator = (teamArray) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>Document</title>
+        <title>My Team</title>
     </head>
     <header>
         <nav class="navbar navbar-dark bg-dark mb-5 justify-content-center">
