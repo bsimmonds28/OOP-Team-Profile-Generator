@@ -9,7 +9,7 @@ Click the image below to see a demo of the application.
 
 The following image shows the web application's appearance.
 
-[![Picture of generated webpage](./assets/team-profile-generator.png)]
+![Picture of generated webpage](./assets/team-profile-generator.png)
 
 ## Table of Contents
 - [Description](#description)
